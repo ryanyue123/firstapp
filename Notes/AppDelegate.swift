@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Ryan Yue. All rights reserved.
 //
 
+import Parse
 import UIKit
 
 @UIApplicationMain
@@ -16,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        // [Optional] Power your app with Local Datastore. For more info, go to
+        // https://parse.com/docs/ios_guide#localdatastore/iOS
+        Parse.enableLocalDatastore()
+        
+        // Initialize Parse.
+        Parse.setApplicationId("1STRHKffpcDv3AtrJCMVLuUqlTgQnQbwb4QqylQ9",
+            clientKey: "NQSPyf55cPfQfPjlLzho9VTxZTg89JaUsoGT7gnC")
+        
         return true
     }
 
