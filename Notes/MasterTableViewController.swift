@@ -20,6 +20,7 @@ class MasterTableViewController: UITableViewController, PFLogInViewControllerDel
         query.fromLocalDatastore()
         
         query.whereKey("username", equalTo: (PFUser.currentUser())!.username!)
+        query.orderByDescending("updatedAt")
         query.findObjectsInBackgroundWithBlock {(objects: [AnyObject]?, error: NSError?) -> Void in            if ((error) == nil)
             {
                 var temp: NSArray = objects! as NSArray
@@ -42,9 +43,14 @@ class MasterTableViewController: UITableViewController, PFLogInViewControllerDel
         query.findObjectsInBackgroundWithBlock {(objects: [AnyObject]?, error: NSError?) -> Void in
             if(error == nil)
             {
-                PFObject.pinAllInBackground(objects, block: nil)
-                println(objects)
-                self.fetchAllObjectsFromDataStore()
+                PFObject.pinAllInBackground(objects, block: { (success, error) -> Void in
+                    println(objects)
+                    
+                    if (error == nil)
+                    {
+                        self.fetchAllObjectsFromDataStore()
+                    }
+                })
             }
             else
             {
@@ -90,7 +96,6 @@ class MasterTableViewController: UITableViewController, PFLogInViewControllerDel
         else
         {
             self.fetchAllObjects()
-            self.fetchAllObjectsFromDataStore()
         }
     }
     func logInViewController(logInController: PFLogInViewController, shouldBeginLogInWithUsername username: String, password: String) -> Bool {
