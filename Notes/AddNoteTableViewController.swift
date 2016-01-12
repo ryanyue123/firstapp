@@ -54,6 +54,24 @@ class AddNoteTableViewController: UITableViewController {
                 println(error?.userInfo)
             }
         }
+//        var newFollow: PFObject
+//        var query: PFQuery = PFQuery(className: (PFUser.currentUser())!.username!)
+//        newFollow = PFObject(className: (PFUser.currentUser())!.username!)
+//        newFollow.setObject((PFUser.currentUser())!.username!, forKey: "fromUser")
+//        newFollow.setObject("Charlton", forKey: "toUser")
+//        newFollow.saveInBackgroundWithBlock { (success, error)  -> Void in
+//            if (error == nil)
+//            {
+//                println("FOLLOWED")
+//            }
+//            else
+//            {
+//                println(error?.description)
+//            }
+//        }
+
+        
+
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     // MARK: - Table view data source
